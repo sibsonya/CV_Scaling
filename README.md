@@ -11,9 +11,12 @@ If the seam passes through a small number of luminance drops, it has a small ene
 ### The seam removal algorithm (for the case of horizontal reduction):
 1. We consider the image energy (we find the norm of the gradient at each point). To find gradient, it is necessary to find the partial derivatives in each of the directions (in X and in Y). In order to find the derivative with respect to X, you need for each pixel from the right neighbor subtract the left (we get the difference derivative of the second-order derivative of accuracy): 
 
-*I'_x(x, y) = I(x + 1, y) − I(x − 1, y)*
+*I'(x, y) = I(x + 1, y) − I(x − 1, y)*
 
 The derivatives at the image boundary are calculated using a first-order approximation:
 
-*I'_x(0, y) = I(1, y) − I(0, y)*
-*I'_x(w − 1, y) = I(w − 1, y) − I(w − 2, y)*
+*I'(0, y) = I(1, y) − I(0, y)*
+
+*I'(w − 1, y) = I(w − 1, y) − I(w − 2, y)*
+
+
