@@ -44,3 +44,4 @@ find the norm of the gradient, it is necessary for each pixel to extract the roo
       
       In this example: in the first matrix - energy values; in the second, the matrix, required to build.
    - Now we select the minimum value in the last line (if there are several, then we take the leftmost one). This point belongs to the minimum seam. Now we can trace all points that belong to the minimum seam.
+3. Remove this seam from the image.
