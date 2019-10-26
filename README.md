@@ -31,7 +31,13 @@ find the norm of the gradient, it is necessary for each pixel to extract the roo
    - Fill in our matrix line by line. For each point, we find the minimum of the three upper neighbors (the side pixels have two neighbors; if the neighbors have the same values, then when we form the seam, we take the left one), add its value and the energy value of this point, write the result in the matrix.
    
 
-      | 3 | 4 | 3 | 5 |                            | 3 | 4 | 3 | 5 |
-      |---|---|---|---|                            |---|---|---|---|
-      | **5** | **4** | **5** | **6** |            | **5** | **4** | **5** | **6** |
-      | **1** | **1** | **1** | **1** |            | **1** | **1** | **1** | **1** |
+      | 3 | 4 | 3 | 5 |                            
+      |---|---|---|---|                            
+      | **5** | **4** | **5** | **6** |           
+      | **1** | **1** | **1** | **1** |
+      
+      
+      | 3 | 4 | 3 | 5 |                            
+      |---|---|---|---|                            
+      | **5** | **4** | **5** | **6** |           
+      | **1** | **1** | **1** | **1** |
