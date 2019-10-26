@@ -19,4 +19,9 @@ The derivatives at the image boundary are calculated using a first-order approxi
 
 *I'(w − 1, y) = I(w − 1, y) − I(w − 2, y)*
 
+Here *w* is the image width, indexing starts from zero. 
 
+Similarly, you can find partial derivative with respect to Y (subtract the upper pixel from the lower one). Now in order to
+find the norm of the gradient, it is necessary for each pixel to extract the root of the sum of squares partial derivatives.
+
+![borders](https://github.com/sibsonya/CV_Scaling/blob/master/borders.png)
