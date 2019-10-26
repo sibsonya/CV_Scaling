@@ -51,3 +51,29 @@ The description below will be given for the case of horizontal image changes (fo
 Using the mask, we can control the formation of seams. We can either increase energy of the corresponding points (then these points will remain on the final image), or vice versa reduce (then these points will be removed from the image). We will increase or decrease the mask by a known large amount: the product of the number of image lines and the number of image columns by 256 (the upper estimate of the gradient value at a point). Using this method, we can, for example, highlight a person’s face with a mask, and it will not be deformed as a result of our algorithm. It is necessary to realize the ability to remove objects that are highlighted by the mask (reduce the energy of the corresponding points), and protect them from deformation (increase the energy of the corresponding points)
 
 ![mask](https://github.com/sibsonya/CV_Scaling/blob/master/imgs/mask.png)
+
+To enlarge the image, you need to find the minimum seam and insert a new one to the right of it, which would be an averaging of the minimum seam and the next one (for each pixel of the minimum seam we take its raight neighbor). Note that if we carry out several iterations of our algorithm, then the minimum seam will be the same each time. To avoid this, it is necessary to increase the value of the mask at the points of this seam (this is the way we use the mask in case of expansion).
+
+# Program interface, data and script for testing
+Агтсешщт **seam_carve** with the following arguments:
+1. The input image.
+2. The operation mode of the algorithm, one of four lines:
+   ’horizontal shrink’
+   ’vertical shrink’
+   ’horizontal expand’
+   ’vertical expand’
+3. (Optional argument). Image mask - a single-channel image that matches the size of the input image. The mask consists of elements {-1, 0, +1}. -1 means pixels to be deleted, +1 means saving. 0 means that the pixel energy does not need to be changed.
+
+The function returns a triple - the changed image and mask, as well as the seam mask (1 - pixels that belong to the seam; 0 - pixels that do not belong to the seam). In the mask, you must also remove or add the corresponding seam.
+
+Testing data - images and masks in png format. The answer for each pair of images is seam coordinates serialized using the pickle module for all possible operating modes. For all intermediate calculations (calculation of gradients, energy), type float64 is used.
+
+The operation of the algorithm can be visualized using the gui.py script (it can help you with debugging). It has an optional argument - the path to the image. The script requires PyQt4. Try to run your algorithm for different versions of images and masks. There are 8 stitches in the layout for each test image.
+
+# Useful resources
+[Algorithm video demonstration](https://www.youtube.com/watch?v=vIFCV2spKtg)
+
+[Seam carving for content-aware image resizing](http://citeseerx.ist.psu.edu/viewdoc/downloaddoi=10.1.1.570.6321&rep=rep1&type=pdf) - original article with a lot of explanatory examples, recommended for a detailed acquaintance with the algorithm
+
+[Wikipedia article on seam carving](https://en.wikipedia.org/wiki/Seam_carving)
+
