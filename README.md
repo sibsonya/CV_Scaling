@@ -25,3 +25,11 @@ If the seam passes through a small number of luminance drops, it has a small ene
 find the norm of the gradient, it is necessary for each pixel to extract the root of the sum of squares partial derivatives.
 
 ![borders](https://github.com/sibsonya/CV_Scaling/blob/master/borders.png)
+
+2. Finding a seam with minimum energy:
+   - Create a matrix of the same size as the original image, and initialize the first row of this matrix with the energy of the corresponding points.
+   - Fill in our matrix line by line. For each point, we find the minimum of the three upper neighbors (the side pixels have two neighbors; if the neighbors have the same values, then when we form the seam, we take the left one), add its value and the energy value of this point, write the result in the matrix.
+   
+| 3 | 4 | 3 | 5 |
+| 5 | 4 | 5 | 6 |
+| 1 | 1 | 1 | 1 |
