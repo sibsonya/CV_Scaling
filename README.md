@@ -2,7 +2,7 @@
 With normal scaling, the image is uniformly deformed along the entire length when resized (objects in the image are reduced along with image). The contextual image scaling algorithm takes into account the context, and the deformation occurs so that
 objects retain their size. In addition, if you use a mask to select an object, then it can be removed from the image or vice versa left unchanged.
 
-![seams](https://github.com/sibsonya/CV_Scaling/blob/master/seams.png)
+![seams](https://github.com/sibsonya/CV_Scaling/blob/master/imgs/seams.png)
 # Task description
 ## Vertical and horizontal image compression
 The idea of the algorithm is to remove the least energy seams from the image. A seam is a connected curve connecting the first and last rows / columns of an image (in the second image, the seams are highlighted in red). The energy of each point, we will call luminance gradient modulus at a given point. Image luminance - component *Y* in the color model *YUV*. The conversion from *RGB* is carried out according to the following formula: *Y = 0.299R + 0.587G + 0.114B*
@@ -24,7 +24,7 @@ If the seam passes through a small number of luminance drops, it has a small ene
    Similarly, you can find partial derivative with respect to Y (subtract the upper pixel from the lower one). Now in order to
 find the norm of the gradient, it is necessary for each pixel to extract the root of the sum of squares partial derivatives.
 
-![borders](https://github.com/sibsonya/CV_Scaling/blob/master/borders.png)
+![borders](https://github.com/sibsonya/CV_Scaling/blob/master/imgs/borders.png)
 
 2. Finding a seam with minimum energy:
    - Create a matrix of the same size as the original image, and initialize the first row of this matrix with the energy of the corresponding points.
@@ -48,5 +48,6 @@ find the norm of the gradient, it is necessary for each pixel to extract the roo
 
 ## Working with mask + image extension
 The description below will be given for the case of horizontal image changes (for the vertical everything is similar).
+Using the mask, we can control the formation of seams. We can either increase energy of the corresponding points (then these points will remain on the final image), or vice versa reduce (then these points will be removed from the image). We will increase or decrease the mask by a known large amount: the product of the number of image lines and the number of image columns by 256 (the upper estimate of the gradient value at a point). Using this method, we can, for example, highlight a person’s face with a mask, and it will not be deformed as a result of our algorithm. It is necessary to realize the ability to remove objects that are highlighted by the mask (reduce the energy of the corresponding points), and protect them from deformation (increase the energy of the corresponding points)
 
-
+![mask](https://github.com/sibsonya/CV_Scaling/blob/master/imgs/mask.png)
