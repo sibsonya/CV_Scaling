@@ -55,7 +55,7 @@ Using the mask, we can control the formation of seams. We can either increase en
 To enlarge the image, you need to find the minimum seam and insert a new one to the right of it, which would be an averaging of the minimum seam and the next one (for each pixel of the minimum seam we take its raight neighbor). Note that if we carry out several iterations of our algorithm, then the minimum seam will be the same each time. To avoid this, it is necessary to increase the value of the mask at the points of this seam (this is the way we use the mask in case of expansion).
 
 # Program interface, data and script for testing
-Агтсешщт **seam_carve** with the following arguments:
+Algorithm **seam_carve** with the following arguments:
 1. The input image.
 2. The operation mode of the algorithm, one of four lines:
    ’horizontal shrink’
