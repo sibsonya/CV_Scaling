@@ -39,5 +39,5 @@ find the norm of the gradient, it is necessary for each pixel to extract the roo
       
       | 3 | 4 | 3 | 5 |                            
       |---|---|---|---|                            
-      | **5** | **4** | **5** | **6** |           
-      | **1** | **1** | **1** | **1** |
+      | **8** | **7** | **8** | **9** |           
+      | **8** | **8** | **8** | **9** |
